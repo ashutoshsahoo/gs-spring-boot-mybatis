@@ -11,5 +11,6 @@
     </typeAliases>
     <mappers>
         <mapper resource="com/ashu/practice/mapper/HotelMapper.xml"/>
+        <mapper resource="com/ashu/practice/mapper/UserMapper.xml"/>
     </mappers>
 </configuration>

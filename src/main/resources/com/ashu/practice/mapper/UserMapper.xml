@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ashu.practice.mapper.UserMapper">
+
+    <select id="getUsers" resultType="com.ashu.practice.domain.User">
+        select * from users order by id
+    </select>
+
+    <select id="getUser" resultType="com.ashu.practice.domain.User">
+        select * from users where id=#{userId}
+    </select>
+
+    <select id="getUsersInMap" resultType="java.util.Map" >
+        SELECT id,name from users
+    </select>
+</mapper>

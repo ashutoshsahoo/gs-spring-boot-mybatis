@@ -1,15 +1,15 @@
 package com.ashu.practice;
 
 import com.ashu.practice.domain.Employee;
-import com.ashu.practice.mapper.ArticleMapper;
-import com.ashu.practice.mapper.CityMapper;
-import com.ashu.practice.mapper.EmployeeRepository;
-import com.ashu.practice.mapper.HotelMapper;
+import com.ashu.practice.mapper.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @SpringBootApplication
 @RequiredArgsConstructor
@@ -28,12 +28,23 @@ public class GsSpringBootMybatisApplication implements CommandLineRunner {
 
     private final EmployeeRepository employeeRepository;
 
+
+    private final UserMapper userMapper;
+
     @Override
     public void run(String... args) throws Exception {
         log.info("City={}", this.cityMapper.findByState("CA"));
         log.info("Hotel={}", this.hotelMapper.selectByCityId(1));
         log.info("Article={}", this.articleMapper.getArticle(1L));
         runEmployeeQuery();
+        log.info("UsersOrderById={}", this.userMapper.getUsers());
+        log.info("User={}", this.userMapper.getUser(1000));
+        Map<Integer, String> values = new HashMap<>();
+        Map<Integer, Map<String, String>> users = this.userMapper.getUsersInMap();
+        log.info("UsersMap={}", users);
+        users.forEach((k, v) -> values.put(k, v.get("NAME")));
+        log.info("Users={}", values);
+
     }
 
     private void runEmployeeQuery() {
@@ -47,4 +58,5 @@ public class GsSpringBootMybatisApplication implements CommandLineRunner {
 
         log.info("All users -> {}", employeeRepository.findAll());
     }
+
 }

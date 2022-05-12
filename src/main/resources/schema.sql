@@ -1,4 +1,3 @@
-
 drop table if exists city;
 create table city (
     id int primary key auto_increment,
@@ -23,10 +22,15 @@ create TABLE articles(
 );
 
 drop table if exists employees;
-create table employees
-(
+create table employees (
    id integer PRIMARY KEY,
    first_name varchar(100) not null,
    last_name varchar(100) not null,
    email_id varchar(200) not null
+);
+
+drop table if exists users;
+create table users (
+   id integer PRIMARY KEY,
+   name varchar(100) not null
 );
